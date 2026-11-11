@@ -1,0 +1,91 @@
+# UI тесты Testboard
+
+Учебный проект школы QA Авито на **JavaScript и Playwright Test** для сайта [Testboard](https://testboard.avito.com/).
+
+Сделайте **один форк** этого репозитория в свой аккаунт. В нём вы напишете первый тест, затем выделите Page Object и выполните лабораторную. Готовых решений в исходной заготовке нет.
+
+## Задания
+
+| Этап | Что нужно сделать | Результат |
+| --- | --- | --- |
+| [Практика по автоматизации UI](docs/01-first-test.md) | Проверить ошибки пустой формы входа | Один тест с двумя проверками |
+| [Практика по архитектуре](docs/02-architecture.md) | Перенести первый тест на Page Object и добавить два сценария | Три независимых теста |
+| [Лабораторная работа](docs/03-laboratory.md) | Реализовать подготовку данных, создание объявлений и избранное | Ещё минимум девять UI-тестов, 15 баллов |
+
+Начните с первой практики. Каталоги pages, helpers, configs и fixtures вы будете создавать по мере выполнения следующих заданий.
+
+## Подготовка
+
+1. Установите [Node.js](https://nodejs.org/en/download) версии 22.15 или новее и [Git](https://git-scm.com/downloads). Используйте WebStorm или VS Code.
+2. На странице [qa-course-avito/web-tests-student](https://github.com/qa-course-avito/web-tests-student) нажмите **Fork**, выберите свой аккаунт и затем **Create fork**.
+3. В своём форке нажмите **Code** и скопируйте HTTPS-адрес. Клонируйте именно свой репозиторий:
+
+```bash
+git clone https://github.com/YOUR_GITHUB_LOGIN/web-tests-student.git
+cd web-tests-student
+npm ci
+npx playwright install chromium
+```
+
+В команде замените YOUR_GITHUB_LOGIN на свой GitHub-логин. Если при создании форка изменили имя репозитория, используйте его адрес и название папки. Для отправки изменений настройте [аутентификацию GitHub](https://docs.github.com/en/authentication/keeping-your-account-and-data-secure/about-authentication-to-github).
+
+Для первой практики учебный аккаунт Testboard и .env не нужны. Файл .env.example относится к лабораторной; чтение настроек из .env вы добавите при развитии проекта.
+
+## Запуск и отладка
+
+```bash
+# Все тесты проекта
+npm test
+
+# Запуск с видимым браузером
+npm test -- --headed
+
+# Пошаговая отладка в Playwright Inspector
+npm test -- --debug
+
+# Интерактивный режим Playwright
+npm test -- --ui
+
+# Открыть HTML-отчёт после запуска
+npm run report
+```
+
+В исходном tests/empty-login.spec.js оставлен throw с сообщением TODO. До реализации сценария запуск завершится этой ошибкой. Замените заготовку своим тестом и удалите throw.
+
+При падении Playwright сохраняет screenshot и trace в test-results. В HTML-отчёте можно открыть trace; локально его также можно посмотреть командой `npx playwright show-trace`, указав путь к trace.zip. Результаты запусков и данные сессии исключены из Git.
+
+## Первая практика
+
+В [tests/empty-login.spec.js](tests/empty-login.spec.js) реализуйте **один test()**:
+
+1. Откройте главную страницу.
+2. Откройте форму входа.
+3. Отправьте форму с пустыми email и паролем.
+4. Проверьте сообщения **«Email обязателен»** и **«Пароль обязателен»**.
+
+Все пять TODO относятся к одному тесту. Локаторы найдите самостоятельно в DevTools. Подробности и критерии готовности — в [задании первой практики](docs/01-first-test.md).
+
+## Сохранение работы
+
+После выполнения задания проверьте состав изменений, создайте коммит и отправьте его в свой форк:
+
+```bash
+git status
+git add tests/empty-login.spec.js
+git commit -m "Add first UI test"
+git push origin main
+git rev-parse HEAD
+```
+
+Преподавателю передайте ссылку на свой форк и SHA коммита. В следующих заданиях добавляйте в коммит новые файлы своего проекта. Продолжайте работу в этом же репозитории; при переходе к архитектуре и лабораторной повторный форк не нужен.
+
+В Git не должны попадать .env, пароли, токены, сохранённые сессии, node_modules и результаты запусков. Перед отправкой проверяйте `git diff --cached`.
+
+## Полезные ссылки
+
+- [Playwright на JavaScript](https://playwright.dev/docs/intro)
+- [Локаторы](https://playwright.dev/docs/locators)
+- [Проверки expect](https://playwright.dev/docs/test-assertions)
+- [Page Object](https://playwright.dev/docs/pom)
+- [Спецификация API Testboard для лабораторной](https://testboard.avito.com/docs/swagger.json)
+- [Как сделать форк репозитория](https://docs.github.com/en/pull-requests/how-tos/work-with-forks/fork-a-repo)

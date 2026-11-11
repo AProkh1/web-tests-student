@@ -1,0 +1,14 @@
+node_modules/
+test-results/
+playwright-report/
+blob-report/
+.env
+.env.*
+!.env.example
+.auth/
+storageState*.json
+playwright/.auth/
+.DS_Store
+*.log
+*.zip
+.idea/
